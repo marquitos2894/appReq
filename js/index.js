@@ -166,10 +166,10 @@
         }
 
         limpiarreq_det(){
-            let template =``;
+            let template =``; 
+            lbltotalreg_det.innerHTML = ``;
             document.querySelector('#viewreq_det').innerHTML = template;
             document.querySelector("#pagination_det").innerHTML = template;
-
         }
 
         json_orderdate(data){
@@ -250,17 +250,15 @@
         let fila = e.target.parentNode;
         console.log(fila.nodeName);
         if(fila.nodeName=='TR'){
-            lblnreq.innerHTML = e.target.parentNode.querySelectorAll("th")[0].innerText;
-            lblnreq_det.innerHTML = e.target.parentNode.querySelectorAll("th")[0].innerText;
-            lblequipo.innerHTML = e.target.parentNode.querySelectorAll("td")[3].innerText;
+            lblnreq.innerHTML = `#${e.target.parentNode.querySelectorAll("th")[0].innerText}`;
+            lblnreq_det.innerHTML = `#${e.target.parentNode.querySelectorAll("th")[0].innerText}`;
+            lblequipo.innerHTML = `Equipo: ${e.target.parentNode.querySelectorAll("td")[3].innerText}`;
             console.log(fila.dataset.idreq);
             //idfactura = fila.dataset.idfact;
             idpintarfilanuevo = fila.id;
             ui.pintarfilas();
             ind.renderrequerimiento_det(fila.dataset.idreq,nopage_det.value);  
-            
         }
-        
     });
 
     document.querySelector("#tablereq_det").addEventListener('click',function(e){
@@ -272,10 +270,47 @@
         }
     });
     
-    document.querySelector("#btnbuscar").addEventListener("click",function(e){   
+    document.querySelector("#btnbuscar").addEventListener("click",function(e){
+        ind.limpiarreq_det();  
         console.log("click",txtbuscareq.value);
         lblnreq.innerHTML = txtbuscareq.value;
         ind.buscarXreq(txtbuscareq.value);
+    });
+
+    document.querySelector("#txtbuscareq").addEventListener("keyup",function(e){
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            e.preventDefault();
+            ind.limpiarreq_det();  
+            console.log("click",txtbuscareq.value);
+            lblnreq.innerHTML = txtbuscareq.value;
+            ind.buscarXreq(txtbuscareq.value);
+          }
+   
+    });
+
+    document.querySelector("#btnrefresh").addEventListener("click", async function(e){
+
+
+        localStorage.setItem("lsdatareq","[]");
+        localStorage.setItem('lsdatareq_det',"[]");
+        if(localStorage.getItem('lsdatareq')=="[]"){
+            await  ind.getrequerimiento();
+        }
+        console.log(lsdatareq);
+        await ind.renderrequerimiento();
+
+        if(localStorage.getItem('lsdatareq_det')=="[]"){
+            await  ind.getrequerimientodetalle();
+        }
+        alert_refresh.innerHTML=`
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Refresh Data!!</strong> Haz actualizado la informacion, las consultas son limitadas, minimo 2 veces por dia. Gracias
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`
+
+        //location.reload();
+
     });
 
     document.querySelector("#btnreset").addEventListener("click",function(e){

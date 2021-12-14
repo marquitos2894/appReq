@@ -13,6 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 
         <style>
@@ -132,15 +133,28 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="row">
                     <div class="col">
-                        <h2>Requerimientos CMH</h2> 
+                        <h3>Requerimientos CMH</h3> 
                     </div>
-                    <div id="colnreq" class="col">
-                        <h2><span id="lblnreq" class="badge bg-primary">.</span></h2>
+                    <div id="alert_refresh" class="col-6">
+                    
+                    </div>
+                    
+                    <div class="col">
+                        <button type="button" id="btnrefresh" class="btn btn-outline-success">Refresh Data<i class="bi bi-recycle"></i></button>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary">
-                    #Registros <span id="lbltotalreg" class="badge bg-light text-dark">.</span>
-                </button>  
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary">
+                            #Registros <span id="lbltotalreg" class="badge bg-light text-dark">.</span>
+                        </button>
+                    </div>
+                    <div id="colnreq" class="col">
+                        <h3><span id="lblnreq" class="badge bg-primary">.</span></h3>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div> 
                 <div class="table-responsive" id="tablereq">
                     <table class="table table-striped table-sm">
                         <thead>
@@ -168,6 +182,7 @@
                             <button type="button" id="btnreset" class="btn btn-primary btn-sm">Reset</button>
                         </div>
                         <div class="col"></div>
+                        <div class="col"></div>
                     </div>
                     <input type="hidden" id="nopage" value="1">  
                 </div>
@@ -180,22 +195,28 @@
                 <span class="badge rounded-pill bg-danger">no procede</span>
                 <hr>
        
-
+                
+                
+                   
+                <h2>Detalle REQ</h2>
+                   
+            
+             
                 <div class="row">
                     <div class="col">
-                        <h2>Detalle REQ</h2>
-                    </div>
-                    <div id="colnreq" class="col">
-                        <h3><span id="lblnreq_det" class="badge bg-primary">.</span></h3>
-                    </div>
-                    <div id="colnreq" class="col">
-                        <h3><span id="lblequipo" class="badge bg-primary">.</span></h3>
-                    </div>
+                    <button type="button" class="btn btn-primary">
+                        #Registros <span id="lbltotalreg_det" class="badge bg-light text-dark">.</span>
+                    </button>
+                </div>
+                <div id="colnreq" class="col">
+                    <h3><span id="lblnreq_det" class="badge bg-primary">.</span></h3>
+                </div>
+                <div id="colnreq" class="col">
+                    <h3><span id="lblequipo" class="badge bg-primary">.</span></h3>
+                </div>
+                <div id="colnreq" class="col">
                     
                 </div>
-                <button type="button" class="btn btn-primary">
-                    #Registros <span id="lbltotalreg_det" class="badge bg-light text-dark">.</span>
-                </button>  
                 <div class="table-responsive" id="tablereq_det">
                     <table class="table table-striped table-sm">
                         <thead>
@@ -228,5 +249,7 @@
     <script type="module" src="js/index.js"></script>
     <script type="module" src="js/modulo.js"></script>
 
+
+    
   </body>
 </html>
